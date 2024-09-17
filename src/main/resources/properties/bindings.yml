@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    function:
+      definition: testProducer;testConsumer; # Bean 지정
+    stream:
+      function:
+        bindings:
+          testProducer-out-0: producer-test # Bean : Channel
+          testConsumer-in-0: consumer-test # Bean : Channel
+      bindings: # input/output 채널에 대한 공통 설정
+        producer-test:
+          destination: test-topic # topic 지정
+          content-type: application/json
+        consumer-test:
+          destination: test-topic # topic 지정
+          group: test-consumer-group # consumer group 지정
+          consumer:
+            concurrency: 1

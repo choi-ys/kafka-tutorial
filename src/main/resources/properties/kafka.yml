@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      kafka: # kafka 전용 설정
+        binder: # kafka binder = kafka broker 설정
+          brokers: localhost:9092,localhost:9093,localhost:9094 # broker 접속 정보
+          auto-create-topics: false # spring application에서 topic 자동 생성 fasle
+          required-acks: 0
+          configuration:
+            key.serializer: org.apache.kafka.common.serialization.StringSerializer
+        bindings: # input/output 채널에 대한 kafka 설정
+          consumer-test:
+            consumer:
+              start-offset: latest # 가장 마지막 message 부터 수신
