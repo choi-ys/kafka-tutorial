@@ -1,6 +1,6 @@
-package io.study.kafka.tutorial.producer;
+package io.study.springcloudstream.product.producer;
 
-import io.study.kafka.tutorial.model.TestMessage;
+import io.study.springcloudstream.product.model.TestMessage;
 import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.support.KafkaHeaders;

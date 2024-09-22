@@ -1,4 +1,4 @@
-package io.study.kafka.tutorial.model;
+package io.study.springcloudstream.product.model;
 
 public record TestMessage(
     Long id,

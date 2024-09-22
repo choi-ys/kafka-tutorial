@@ -1,6 +1,6 @@
-package io.study.kafka.tutorial.consumer;
+package io.study.springcloudstream.product.consumer;
 
-import io.study.kafka.tutorial.model.TestMessage;
+import io.study.springcloudstream.product.model.TestMessage;
 import java.util.function.Consumer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;

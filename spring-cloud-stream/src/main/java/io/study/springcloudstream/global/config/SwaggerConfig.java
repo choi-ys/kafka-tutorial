@@ -1,4 +1,4 @@
-package io.study.kafka.global.config;
+package io.study.springcloudstream.global.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

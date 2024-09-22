@@ -1,10 +1,10 @@
-package io.study.kafka;
+package io.study.springcloudstream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KafkaTutorialAppTests {
+class SpringCloudStreamAppTests {
 
     @Test
     void contextLoads() {

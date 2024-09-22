@@ -1,7 +1,7 @@
-package io.study.kafka.tutorial.api;
+package io.study.springcloudstream.product.api;
 
-import io.study.kafka.tutorial.model.TestMessage;
-import io.study.kafka.tutorial.producer.TestProducer;
+import io.study.springcloudstream.product.model.TestMessage;
+import io.study.springcloudstream.product.producer.TestProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
