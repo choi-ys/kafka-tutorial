@@ -1,8 +1,22 @@
 rootProject.name = "kafka-tutorial"
 
-include("core:spring-cloud-stream")
-include("core:spring-kafka")
-include("core:message")
+registerModules(rootDir)
 
-include("support:swagger")
-include("support:web")
+private fun registerModules(directory: File) {
+    directory.walkTopDown()
+        .filter { it.isDirectory && File(it, "build.gradle.kts").exists() && it != directory }
+        .forEach { includeModule(it) }
+}
+
+private fun includeModule(moduleDir: File) {
+    val relativePath = moduleDir.relativeTo(rootDir).path
+    val moduleName = convertPathToModuleName(relativePath)
+
+    include(moduleName)
+}
+
+private fun convertPathToModuleName(relativePath: String): String {
+    val modulePrefix = ":"
+    val moduleName = relativePath.replace(File.separatorChar, modulePrefix.first())
+    return "$modulePrefix$moduleName"
+}
