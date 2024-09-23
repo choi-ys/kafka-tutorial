@@ -1,7 +1,6 @@
 val springCloudVersion = providers.gradleProperty("SPRING_CLOUD_DEPENDENCIES_VERSION").get()
 
 dependencies {
-//    compileOnly(project(":core:message"))
     implementation(project(":core:message"))
     implementation(project(":support:web"))
     implementation(project(":support:swagger"))
