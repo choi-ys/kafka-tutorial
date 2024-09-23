@@ -1,6 +1,0 @@
-spring:
-  config:
-    import:
-      - classpath:properties/bindings.yml
-      - classpath:properties/kafka.yml
-      - classpath:properties/swagger.yml

@@ -1,13 +1,10 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    java
+    `java-library`
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
 }
-
-group = "io.study"
-version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
@@ -21,25 +18,21 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-extra["springCloudVersion"] = "2023.0.3"
-
-subprojects {
-    apply(plugin = "java")
-    apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "org.springframework.boot")
+allprojects {
+    group = providers.gradleProperty("PROJECT_GROUP").get()
+    version = "0.0.1-SNAPSHOT"
 
     repositories {
         mavenCentral()
     }
-    dependencies {
-        // api-docs-supporter
-        implementation("org.springframework.boot:spring-boot-starter-web")
-        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+}
 
+subprojects {
+    apply(plugin = "java-library")
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "org.springframework.boot")
+
+    dependencies {
         compileOnly("org.projectlombok:lombok")
         annotationProcessor("org.projectlombok:lombok")
 
