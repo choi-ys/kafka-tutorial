@@ -1,6 +1,5 @@
 package io.study.kafka.springkafka.consumer;
 
-import static io.study.kafka.springkafka.utils.KafkaTopicConstants.TEST_CONSUMER_GROUP;
 import static io.study.kafka.springkafka.utils.KafkaTopicConstants.TEST_TOPIC;
 
 import io.study.kafka.domain.message.TestMessage;
@@ -13,9 +12,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestConsumer {
 
-    @KafkaListener(topics = {TEST_TOPIC}, groupId = TEST_CONSUMER_GROUP)
-    public void accept(ConsumerRecord<String, TestMessage> record) {
-        log.info("Received record: {}", record.value());
+    private static final String TEST_REAL_TIME_CONSUMER_GROUP = "test-real-time-consumer-group";
+
+    @KafkaListener(
+        topics = {TEST_TOPIC},
+        groupId = TEST_REAL_TIME_CONSUMER_GROUP,
+        containerFactory = "kafkaListenerFactory"
+    )
+    public void acceptRealTime(ConsumerRecord<String, TestMessage> record) {
+        log.info("Consumed -> [key: {}, partition: {}, offset: {}][{}]",
+            record.key(),
+            record.partition(),
+            record.offset(),
+            record.value()
+        );
     }
 
 }
