@@ -1,0 +1,6 @@
+spring:
+  config:
+    import:
+      - classpath:/properties/server.yml
+      - classpath:/properties/kafka.yml
+      - classpath:swagger.yml
