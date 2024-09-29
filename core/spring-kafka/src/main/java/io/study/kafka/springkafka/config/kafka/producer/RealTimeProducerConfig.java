@@ -23,15 +23,15 @@ public class RealTimeProducerConfig {
      * @param kafkaProperties kafka.yml
      * @return {@code ProducerFactory} 실시간 메시지 발행 환경 설정이 구성된 ProducerFactory
      * @Note {@code BOOTSTRAP_SERVERS_CONFIG} Kafka Cluster 정보
-     * @Note {@code KEY_SERIALIZER_CLASS_CONFIG} 메세지 Key 직렬화 방식 : String (기본값)
-     * @Note {@code VALUE_SERIALIZER_CLASS_CONFIG} 메세지 Value 직렬화 방식 : Json
-     * @Note {@code COMPRESSION_TYPE_CONFIG} 메시지 압축 방식 : none
-     * @Note {@code BATCH_SIZE_CONFIG} 일괄로 전송할 메시지의 최대 크기 : 16,384B (16KB)
-     * @Note {@code LINGER_MS_CONFIG} 일괄 메시지를 구성하기까지의 대기 시간 : 0ms
+     * @Note {@code KEY_SERIALIZER_CLASS_CONFIG} StringSerializer를 이용한 Key 직렬화
+     * @Note {@code VALUE_SERIALIZER_CLASS_CONFIG} JsonSerializer를 이용한 value 직렬화
+     * @Note {@code COMPRESSION_TYPE_CONFIG} 메시지 압축 방식 미 적용
+     * @Note {@code BATCH_SIZE_CONFIG} 메세지 일괄 전송을 위한 batch의 최대 크기를 16KB로 설정
+     * @Note {@code LINGER_MS_CONFIG} 일괄 메시지 구성까지의 대기 시간 없음 (즉시 전송)
      * @Note {@code MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION} 특정 브로커에 동시 전송 가능한 요청 수 : 5
-     * @Note {@code ACKS_CONFIG} 브로커의 메시지 수신 여부 확인 : 1 (Reader partition only)
+     * @Note {@code ACKS_CONFIG} 브로커의 메세지 수신 여부 확인 시 Leader partition의 메세지 수신 여부만 확인
      * @Note {@code ENABLE_IDEMPOTENCE_CONFIG} 메시지 중복 방지 : true
-     * @Note {@code RETRIES_CONFIG} 메시지 재 발행 시도 횟수 : 0
+     * @Note {@code RETRIES_CONFIG} 메시지 전송 실패 시 재시도 횟수 : 0
      */
     @Bean
     public ProducerFactory<String, Object> kafkaProducerFactory(KafkaProperties kafkaProperties) {
