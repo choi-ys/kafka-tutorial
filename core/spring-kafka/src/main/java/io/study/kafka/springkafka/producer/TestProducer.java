@@ -17,7 +17,6 @@ public class TestProducer {
 
     public void send(TestMessage message) {
         kafkaTemplate.send(TEST_TOPIC, String.valueOf(message.id()), message);
-        log.info("Sent message: {}", message);
     }
 
 }

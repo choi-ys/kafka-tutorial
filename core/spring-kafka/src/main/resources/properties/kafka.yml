@@ -15,9 +15,9 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       acks: 1
       compression-type: none
-      batch-size: 16384
-      retries: 0
+      retries: 1
       properties:
+        batch-size: 16384
         linger-ms: 0
-        max-in-flight-requests-per-connection: 5
+        max-in-flight-requests-per-connection: 3
         enable-idempotence: true
