@@ -2,6 +2,7 @@ package io.study.kafka.springkafka.config.kafka.producer;
 
 import java.util.Map;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Producer;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +14,14 @@ import org.springframework.kafka.core.ProducerFactory;
 @Configuration
 public class RealTimeProducerConfig<K, V> {
 
-    private static final String BATCH_SIZE = "batch-size";
-    private static final String MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION = "max-in-flight-requests-per-connection";
-    private static final String LINGER_MS = "linger-ms";
+    @Value("${spring.kafka.producer.batch-size}")
+    private int batchSize;
+
+    @Value("${spring.kafka.producer.properties.max-in-flight-requests-per-connection}")
+    private int maxInFlightRequestsPerConnection;
+
+    @Value("${spring.kafka.producer.properties.linger-ms}")
+    private String lingerMs;
 
     /**
      * 지연시간이 낮은 메시지 발행을 위한 Kafka ProducerFactory 설정 초기화
@@ -35,16 +41,15 @@ public class RealTimeProducerConfig<K, V> {
     @Bean
     public ProducerFactory<K, V> kafkaProducerFactory(KafkaProperties kafkaProperties) {
         Producer producer = kafkaProperties.getProducer();
-        Map<String, String> properties = producer.getProperties();
 
         Map<String, Object> props = Map.of(
             ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers(),
             ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, producer.getKeySerializer(),
             ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, producer.getValueSerializer(),
             ProducerConfig.COMPRESSION_TYPE_CONFIG, producer.getCompressionType(),
-            ProducerConfig.BATCH_SIZE_CONFIG, properties.get(BATCH_SIZE),
-            ProducerConfig.LINGER_MS_CONFIG, properties.get(LINGER_MS),
-            ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, properties.get(MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION),
+            ProducerConfig.BATCH_SIZE_CONFIG, batchSize,
+            ProducerConfig.LINGER_MS_CONFIG, lingerMs,
+            ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, maxInFlightRequestsPerConnection,
             ProducerConfig.ACKS_CONFIG, producer.getAcks(),
             ProducerConfig.RETRIES_CONFIG, producer.getRetries()
         );

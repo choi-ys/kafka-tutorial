@@ -17,11 +17,10 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      batch-size: 16384
       acks: 1
       compression-type: none
       retries: 1
       properties:
-        batch-size: 16384
         linger-ms: 0
         max-in-flight-requests-per-connection: 3
-        enable-idempotence: true
