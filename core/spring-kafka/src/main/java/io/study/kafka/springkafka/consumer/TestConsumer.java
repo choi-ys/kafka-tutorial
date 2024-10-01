@@ -20,10 +20,11 @@ public class TestConsumer {
         containerFactory = "kafkaListenerFactory"
     )
     public void acceptRealTime(ConsumerRecord<String, TestMessage> record) {
-        log.info("Consumed -> [key: {}, partition: {}, offset: {}][{}]",
-            record.key(),
+        log.info("Consumed -> [{}] : [partition: {}, offset: {}] [key: {}, {}]",
+            record.topic(),
             record.partition(),
             record.offset(),
+            record.key(),
             record.value()
         );
     }

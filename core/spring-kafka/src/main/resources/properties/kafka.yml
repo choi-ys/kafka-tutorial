@@ -5,6 +5,10 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       auto-offset-reset: latest
+      fetch-max-wait: 50
+      fetch-min-size: 1048576
+      max-poll-records: 100
+      enable-auto-commit: true
       properties:
         spring.json.trusted.packages: "*"
         allow.auto.create.topic: false
