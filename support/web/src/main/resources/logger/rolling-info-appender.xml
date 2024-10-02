@@ -1,0 +1,25 @@
+<included>
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="ROLLING_INFO">
+
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>${INFO_LOG_PATTERN}</pattern>
+    </encoder>
+
+    <file>${BASE_LOG_FILE_PATH}/info/application.log</file>
+
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>INFO</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>./logs/archived/info/application-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <maxFileSize>20MB</maxFileSize>
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>200MB</totalSizeCap>
+    </rollingPolicy>
+
+  </appender>
+</included>

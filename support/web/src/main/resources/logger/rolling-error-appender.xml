@@ -1,0 +1,23 @@
+<included>
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="ROLLING_ERROR">
+
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>${ERROR_LOG_PATTERN}</pattern>
+    </encoder>
+
+    <file>${BASE_LOG_FILE_PATH}/error/exception.log</file>
+
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>./logs/archived/error/application-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <maxFileSize>20MB</maxFileSize>
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>200MB</totalSizeCap>
+    </rollingPolicy>
+
+  </appender>
+</included>

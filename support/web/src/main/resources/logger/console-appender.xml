@@ -1,0 +1,10 @@
+<included>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>
+        %green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %yellow([%13.13t]) %blue(%-5level) %magenta(%30.30logger{40}:%4L) - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+</included>
