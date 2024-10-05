@@ -1,11 +1,11 @@
 <configuration>
+  <include resource="logger/console-appender.xml"/>
   <include resource="logger/rolling-info-appender.xml"/>
   <include resource="logger/rolling-error-appender.xml"/>
-  <include resource="logger/console-appender.xml"/>
 
+  <property name="LOG_PATH" value="${user.dir}/logs"/>
   <property name="INFO_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%13.13t] %-5level %30.30logger{40}:%4L - %msg%n"/>
   <property name="ERROR_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%20.20t][Process: ${PID:-}][elapsed:%r ms] %-5level %40.40logger{40}:%4L - %msg%n"/>
-  <property name="BASE_LOG_FILE_PATH" value="./logs"/>
 
   <root level="INFO">
     <appender-ref ref="CONSOLE"/>

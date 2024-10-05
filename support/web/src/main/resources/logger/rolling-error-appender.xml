@@ -2,22 +2,21 @@
   <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="ROLLING_ERROR">
 
     <encoder>
-      <charset>UTF-8</charset>
       <pattern>${ERROR_LOG_PATTERN}</pattern>
     </encoder>
 
-    <file>${ERROR_LOG_PATTERN}/error/exception.log</file>
+    <file>${LOG_PATH}/error.log</file>
 
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
       <level>WARN</level>
     </filter>
 
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>./logs/archived/error/application-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <fileNamePattern>${LOG_PATH}/archived/error/error-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
       <maxFileSize>20MB</maxFileSize>
-      <maxHistory>30</maxHistory>
-      <totalSizeCap>200MB</totalSizeCap>
     </rollingPolicy>
 
   </appender>
+
+  <include resource="base-rolling-appender.xml"/>
 </included>

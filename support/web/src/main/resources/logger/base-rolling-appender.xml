@@ -1,0 +1,11 @@
+<included>
+  <encoder>
+    <charset>UTF-8</charset>
+  </encoder>
+
+  <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+    <maxHistory>30</maxHistory>
+    <totalSizeCap>200MB</totalSizeCap>
+  </rollingPolicy>
+  
+</included>
