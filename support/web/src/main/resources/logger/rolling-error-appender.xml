@@ -6,7 +6,7 @@
       <pattern>${ERROR_LOG_PATTERN}</pattern>
     </encoder>
 
-    <file>${BASE_LOG_FILE_PATH}/error/exception.log</file>
+    <file>${ERROR_LOG_PATTERN}/error/exception.log</file>
 
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
       <level>WARN</level>
