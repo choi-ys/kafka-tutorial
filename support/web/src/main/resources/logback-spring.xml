@@ -12,5 +12,4 @@
     <appender-ref ref="ROLLING_INFO"/>
     <appender-ref ref="ROLLING_ERROR"/>
   </root>
-
 </configuration>
