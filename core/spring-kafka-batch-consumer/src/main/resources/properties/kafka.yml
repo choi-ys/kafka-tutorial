@@ -1,0 +1,16 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092,localhost:9094,localhost:9094
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: latest
+      properties:
+        spring.json.trusted.packages: "*"
+        allow.auto.create.topic: false
+    listener:
+      concurrency: 3 # 병렬처리 관련 설정 -> partition 개수랑 동일하게 주시면 됩니다.
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: 1 # 네트워크 공부하시게되면 handshake라는 통신 과정에서 
